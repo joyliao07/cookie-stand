@@ -13,9 +13,24 @@ h2 {
     color: #1a0d00;
 }
 
+h3 {
+    font-size: 1em; 
+    text-indent: 6ch;
+    margin-left: 90px;
+    margin-bottom: 2ch;
+    color: #1a0d00;
+}
+
 div {
     /* text-indent: 10ch; */
     margin-left: 15ch;
+    margin-bottom: 40px;
+}
+
+form {
+    /* text-indent: 10ch; */
+    margin-left: 15ch;
+    margin-bottom: 40px;
 }
 
 footer {
@@ -78,5 +93,15 @@ table {
     margin-left: 130px;
     text-align: left;
 }
+
+#hour-row th {
+    border: black;
+    padding: 1pc;
+}
+
+#hour-row tr td {
+    padding: 0.5pc;
+}
+
 
 
