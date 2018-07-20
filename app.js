@@ -1,6 +1,6 @@
 'use strict';
 
-var hours = ['', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', 'Total'];
+var hours = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
 var allStore = [];
 var tblEl = document.getElementById('hour-row');
 
@@ -24,6 +24,7 @@ function getRandomIntInclusive (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+
 Sales.prototype.cookies = function() {
   for (var i = 0; i < hours.length; i++) {
     var customer = getRandomIntInclusive(this.min, this.max);
@@ -32,6 +33,7 @@ Sales.prototype.cookies = function() {
     this.dailyTotal += cookienum;
   }
 };
+
 
 function rowFirst (){
   var row = document.getElementById('hour-row');
@@ -54,6 +56,8 @@ function rowFirst (){
 }
 rowFirst();
 
+//// change rowOthers to a prototype so we can control when to call the function
+//// Never do (var i = 0; i < this.cookiesPerHour+1; i++) ; the undefined object will cause an error
 Sales.prototype.rowOthers = function() {
   this.cookies(); // Generate the cookiesPerHour
 
@@ -108,12 +112,21 @@ function createTotalRow() {
   tblEl.appendChild(trTotalEl);
 }
 
+
 function nukeTotalRow() {
   var totalRow = document.getElementById('total-row');
   if (totalRow) {
     totalRow.remove();
   }
 }
+
+///////////////// put new Sales in the bottom of the file for sequence of execution
+
+new Sales('1st&Pike', '23', '65', '6.3');
+new Sales('SeaTac', '3', '24', '1.2');
+new Sales('Seattle', '11', '38', '3.7');
+new Sales('Capitol', '20', '38', '2.3');
+new Sales('Alki', '2', '16', '4.6');
 
 // Form Data
 
@@ -129,11 +142,6 @@ formEl.addEventListener('submit', function(event) {
   new Sales(name, min, max, avg);
 });
 
-new Sales('1st&Pike', '23', '65', '6.3');
-new Sales('SeaTac', '3', '24', '1.2');
-new Sales('Seattle', '11', '38', '3.7');
-new Sales('Capitol', '20', '38', '2.3');
-new Sales('Alki', '2', '16', '4.6');
 
 
 
