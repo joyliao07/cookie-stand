@@ -9,29 +9,34 @@
 <body>
   <header>
     <h1>Production Model</h1>
-    <img src="salmon.png" alt="salmon"/>
-    <br></br>
-    <nav class="main-nav">
-      <ol>
 
+    <nav class="main-nav">
+      <ol class ="nav">
         <li><a href = "index.html">Home Page</a></li>
         <li>Photo Gallery</li>
         <li>Style Guide</li>
-        <br></br>
       </ol>
-
     </nav>
 
   </header>
   <main class="container">
-    <div>
-      <p>Salmon-cookie production model based on locations, the number of customers for each location and how many cookies they buy in average. </p>
-      <br></br>
-      <p>
-        Please fill in information of your store and we will add it to our production table below!</p>
+    <div class = "div-1">
+      <div class = "model-text">
+        <p>Salmon-cookie production model based on locations, the number of customers for each location and how many cookies they buy in average. </p>
+      </div>
+
+      <img src="salmon.png" alt="salmon" class = "salmon">           
+
     </div> 
 
-    <h3>Forms</h3>
+  <div class = "div-2">
+    <h2>Forms</h2>
+
+    <p>
+        Please fill in information of your store and we will add it to our production table below!
+    </p>
+
+
     <form id="main-form">
       <input name="name" type="text" placeholder="store name">
       <input name="min" type="number" placeholder="min. customer">
@@ -44,10 +49,9 @@
     <table id = "hour-row">
 
 
-
     </table>
-    <br></br>
-    <br></br> 
+
+  </div>
   </main>
   <footer>copyright 2018</footer>
   <script src="app.js"></script>
