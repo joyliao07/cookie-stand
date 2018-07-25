@@ -1,7 +1,7 @@
 'use strict';
 
 var hours = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
-var allStore = [];
+var allStore = [];                       //to store all info from the constructor
 var tblEl = document.getElementById('hour-row');
 
 function Sales(name, min, max, avg) {
@@ -9,14 +9,15 @@ function Sales(name, min, max, avg) {
   this.min = min;
   this.max = max;
   this.avg = avg;
-  this.cookiesPerHour = [];
-  this.dailyTotal = 0;
+  this.cookiesPerHour = [];   //array to store cookiesPerHour for all hours and all stores
+  this.dailyTotal = 0;        // to tally the total column for each store
 
   allStore.push(this);
-  nukeTotalRow();
+  nukeTotalRow();             //to invoke the function
   this.rowOthers();
-  createTotalRow();
+  createTotalRow();          //to invoke the function
 }
+
 
 function getRandomIntInclusive (min, max) {
   min = Math.ceil(min);
@@ -25,7 +26,7 @@ function getRandomIntInclusive (min, max) {
 }
 
 
-Sales.prototype.cookies = function() {
+Sales.prototype.cookies = function() {     //to calculate the number of cookies to be made
   for (var i = 0; i < hours.length; i++) {
     var customer = getRandomIntInclusive(this.min, this.max);
     var cookienum = parseInt(customer * this.avg);
@@ -59,16 +60,16 @@ rowFirst();
 //// change rowOthers to a prototype so we can control when to call the function
 //// Never do (var i = 0; i < this.cookiesPerHour+1; i++) ; the undefined object will cause an error
 Sales.prototype.rowOthers = function() {
-  this.cookies(); // Generate the cookiesPerHour
+  this.cookies(); // to invoke Sales.prototype.cookies when we want to generate rowOthers 
 
   var trSalesEl = document.createElement('tr');
 
-  var tdNameEle = document.createElement('td');
+  var tdNameEle = document.createElement('td'); //to generate the first column which lists all stores
   tdNameEle.textContent = this.name;
   trSalesEl.appendChild(tdNameEle);
 
-  // loop through cookiesPerHour, and add tds
-  for (var i = 0; i < this.cookiesPerHour.length; i++) {
+ 
+  for (var i = 0; i < this.cookiesPerHour.length; i++) {  //loop through cookiesPerHour, and add tds
     var tdCookiesEle = document.createElement('td');
     tdCookiesEle.textContent = this.cookiesPerHour[i];
     trSalesEl.appendChild(tdCookiesEle);
@@ -84,7 +85,7 @@ Sales.prototype.rowOthers = function() {
 
 function createTotalRow() {
   var trTotalEl = document.createElement('tr');
-  trTotalEl.id = 'total-row';
+  trTotalEl.id = 'total-row';             //used in line 118?
 
   var tdFirstEle = document.createElement('td');
   tdFirstEle.textContent = 'Totals';
@@ -99,10 +100,10 @@ function createTotalRow() {
       total += allStore[j].cookiesPerHour[i];
     }
     var tdDataEle = document.createElement('td');
-    tdDataEle.textContent = total;
+    tdDataEle.textContent = total;  //total = for all stores in any given hour
     trTotalEl.appendChild(tdDataEle);
 
-    grandTotal += total;
+    grandTotal += total;           //grandTotal = for all hours for all stores
   }
 
   var tdGrandtotalEle = document.createElement('td');
@@ -114,7 +115,7 @@ function createTotalRow() {
 
 
 function nukeTotalRow() {
-  var totalRow = document.getElementById('total-row');
+  var totalRow = document.getElementById('total-row'); //refer to line88?
   if (totalRow) {
     totalRow.remove();
   }
@@ -132,7 +133,7 @@ new Sales('Alki', '2', '16', '4.6');
 
 var formEl = document.getElementById('main-form');
 formEl.addEventListener('submit', function(event) {
-  event.preventDefault();
+  event.preventDefault(); 
 
   var name = event.target.name.value;
   var min = event.target.min.value;
